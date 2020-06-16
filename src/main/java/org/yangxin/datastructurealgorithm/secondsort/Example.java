@@ -13,6 +13,7 @@ public class Example {
     }
 
     @SuppressWarnings("all")
+//    static <T> boolean less(Comparable<T> v, Comparable<T> w) {
     static <T> boolean less(Comparable<T> v, Comparable<T> w) {
         return v.compareTo((T) w) < 0;
     }
