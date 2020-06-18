@@ -14,7 +14,9 @@ public class Quick extends Example{
         sort(a, 0, a.length - 1);
     }
 
-    private static void sort(Comparable<?>[] a, int lo, int hi) {
+    private static <T> void sort(Comparable<T>[] a, int lo, int hi) {
+//    private static void sort(Comparable<?>[] a, int lo, int hi) {
+        // 如果是单个元素，则它已经有序了，直接退出
         if (hi <= lo) {
             return;
         }
@@ -30,6 +32,7 @@ public class Quick extends Example{
     /**
      * 快速排序的切分
      */
+//    private static int partition(Comparable<?>[] a, int lo, int hi) {
     private static <T> int partition(Comparable<T>[] a, int lo, int hi) {
         // 将数组切分为a[lo..i-1]，a[i]，a[i+1..hi]
         // 左右扫描指针
@@ -59,5 +62,19 @@ public class Quick extends Example{
         exch(a, lo, j);
         // a[lo..j-1] <= a[j] <= a[j+1..hi]达成
         return j;
+    }
+
+    public static void main(String[] args) {
+//        Character[] a = new Character[]{'S', 'O', 'R', 'T', 'E', 'X', 'A', 'M', 'P', 'L', 'E'};
+//        sort(a);
+//        show(a);
+
+//        Integer[] a = new Integer[]{3, 2};
+        Integer[] a = new Integer[]{3, 7, 9, 2, 0, 19, 4};
+        // 3, 0, 9, 2, 7, 19, 4
+        // 3, 0, 2, 9, 7, 19, 4
+        // 2, 0, 3, 9, 7, 19, 4
+        sort(a);
+        show(a);
     }
 }
