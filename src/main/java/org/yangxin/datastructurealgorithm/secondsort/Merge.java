@@ -7,20 +7,20 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * @author yangxin
  * 2020/06/16 13:43
  */
-public class Merge extends Example {
+public class Merge<T extends Comparable<T>> extends Example<T> {
 
     /**
      * 归并所需的辅助数组
      */
-    private static Comparable<?>[] aux;
+    private T[] aux;
 
-    public static <T> void sort(Comparable<T>[] a) {
+    public void sort(T[] a) {
         // 一次性分配空间
-        aux = new Comparable[a.length];
+        aux = (T[]) new Comparable[a.length];
         sort(a, 0, a.length - 1);
     }
 
-    private static <T> void sort(Comparable<T>[] a, int lo, int hi) {
+    private void sort(T[] a, int lo, int hi) {
         // 将数组a[lo..hi]排序
         if (hi <= lo) {
             return;
@@ -35,7 +35,7 @@ public class Merge extends Example {
         merge(a, lo, mid, hi);
     }
 
-    static void merge(Comparable<?>[] a, int lo, int mid, int hi) {
+    private void merge(T[] a, int lo, int mid, int hi) {
         // 将a[lo..mid]和a[mid+1..hi]归并
         int i = lo, j = mid + 1;
 
@@ -48,7 +48,7 @@ public class Merge extends Example {
                 a[k] = aux[j++];
             } else if (j > hi) {
                 a[k] = aux[i++];
-            } else if (less((Comparable) aux[j], (Comparable) aux[i])) {
+            } else if (less(aux[j], aux[i])) {
                 a[k] = aux[j++];
             } else {
                 a[k] = aux[i++];
@@ -57,9 +57,10 @@ public class Merge extends Example {
     }
 
     public static void main(String[] args) {
-        Integer[] a = new Integer[]{3, 2};
-//        Integer[] a = new Integer[]{3, 7, 9, 2, 0, 19, 4};
-        sort(a);
-        show(a);
+//        Integer[] a = new Integer[]{3, 2};
+        Integer[] a = new Integer[]{3, 7, 9, 2, 0, 19, 4};
+        Merge<Integer> merge = new Merge<>();
+        merge.sort(a);
+        merge.show(a);
     }
 }

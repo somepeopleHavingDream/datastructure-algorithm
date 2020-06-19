@@ -6,16 +6,15 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * @author yangxin
  * 2020/06/16 15:16
  */
-public class Quick extends Example{
+public class Quick<T extends Comparable<T>> extends Example<T> {
 
-    public static <T> void sort(Comparable<T>[] a) {
+    public void sort(T[] a) {
         // 消除对输入的依赖
         //        StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
     }
 
-    private static <T> void sort(Comparable<T>[] a, int lo, int hi) {
-//    private static void sort(Comparable<?>[] a, int lo, int hi) {
+    public void sort(T[] a, int lo, int hi) {
         // 如果是单个元素，则它已经有序了，直接退出
         if (hi <= lo) {
             return;
@@ -32,13 +31,12 @@ public class Quick extends Example{
     /**
      * 快速排序的切分
      */
-//    private static int partition(Comparable<?>[] a, int lo, int hi) {
-    private static <T> int partition(Comparable<T>[] a, int lo, int hi) {
+    public int partition(T[] a, int lo, int hi) {
         // 将数组切分为a[lo..i-1]，a[i]，a[i+1..hi]
         // 左右扫描指针
         int i = lo, j = hi + 1;
         // 切分元素
-        Comparable<T> v = a[lo];
+        T v = a[lo];
         while (true) {
             // 左右扫描，检查扫描是否结束并交换元素
             while (less(a[++i], v)) {
@@ -74,7 +72,8 @@ public class Quick extends Example{
         // 3, 0, 9, 2, 7, 19, 4
         // 3, 0, 2, 9, 7, 19, 4
         // 2, 0, 3, 9, 7, 19, 4
-        sort(a);
-        show(a);
+        Quick<Integer> quick = new Quick<>();
+        quick.sort(a);
+        quick.show(a);
     }
 }

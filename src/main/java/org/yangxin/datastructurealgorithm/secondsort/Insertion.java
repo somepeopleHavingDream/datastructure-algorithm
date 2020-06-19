@@ -6,9 +6,9 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * @author yangxin
  * 2020/06/15 17:14
  */
-public class Insertion extends Example {
+public class Insertion<T extends Comparable<T>> extends Example<T> {
 
-    public static <T> void sort(Comparable<T>[] a) {
+    public void sort(T[] a) {
         // 将a[]按升序排列
         int N = a.length;
         for (int i = 1; i < N; i++) {
@@ -21,7 +21,8 @@ public class Insertion extends Example {
 
     public static void main(String[] args) {
         Character[] a = new Character[]{'S', 'O', 'R', 'T', 'E', 'X', 'A', 'M', 'P', 'L', 'E'};
-        sort(a);
-        show(a);
+        Insertion<Character> insertion = new Insertion<>();
+        insertion.sort(a);
+        insertion.show(a);
     }
 }

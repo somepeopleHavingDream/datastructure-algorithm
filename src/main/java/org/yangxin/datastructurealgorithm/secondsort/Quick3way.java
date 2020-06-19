@@ -6,23 +6,23 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * @author yangxin
  * 2020/06/18 14:50
  */
-public class Quick3way extends Example {
+public class Quick3way<T extends Comparable<T>> extends Example<T> {
 
-    public static <T> void sort(Comparable<T>[] a) {
+    public void sort(T[] a) {
         // 消除对输入的依赖
         //        StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
     }
 
-    private static <T> void sort(Comparable<T>[] a, int lo, int hi) {
+    private void sort(T[] a, int lo, int hi) {
         if (hi <= lo) {
             return;
         }
 
         int lt = lo, i = lo + 1, gt = hi;
-        Comparable<T> v = a[lo];
+        T v = a[lo];
         while (i <= gt) {
-            int cmp = a[i].compareTo((T) v);
+            int cmp = a[i].compareTo(v);
             if (cmp < 0) {
                 exch(a, lt++, i++);
             } else if (cmp > 0) {
@@ -46,7 +46,8 @@ public class Quick3way extends Example {
         // 3, 3, 0, 2, 19, 4, 9, 7  i = 2, gt = 3, lt = 0;
         // 0, 3, 3, 2, 19, 4, 9, 7  i = 3, gt = 3, lt = 1;
         // 0, 2, 3, 3, 19, 4, 9, 7  i = 4, gt = 3, lt = 2;
-        sort(a);
-        show(a);
+        Quick3way<Integer> quick3way = new Quick3way<>();
+        quick3way.sort(a);
+        quick3way.show(a);
     }
 }

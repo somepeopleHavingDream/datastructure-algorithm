@@ -6,17 +6,17 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * @author yangxin
  * 2020/06/16 14:42
  */
-public class MergeBU extends Merge {
+public class MergeBU<T extends Comparable<T>> extends Merge<T> {
 
     /**
      * 归并所需的辅助数组
      */
-    private static Comparable<?>[] aux;
+    private T[] aux;
 
-    public static <T> void sort(Comparable<T>[] a) {
+    public void sort(T[] a) {
         // 进行lgN次两两归并
         int N = a.length;
-        aux = new Comparable[N];
+        aux = (T[]) new Comparable[N];
 
         // sz子数组大小
         for (int sz = 1; sz < N; sz = sz + sz) {
@@ -27,7 +27,7 @@ public class MergeBU extends Merge {
         }
     }
 
-    static void merge(Comparable<?>[] a, int lo, int mid, int hi) {
+    public void merge(T[] a, int lo, int mid, int hi) {
         // 将a[lo..mid]和a[mid+1..hi]归并
         int i = lo, j = mid + 1;
 
@@ -40,7 +40,7 @@ public class MergeBU extends Merge {
                 a[k] = aux[j++];
             } else if (j > hi) {
                 a[k] = aux[i++];
-            } else if (less((Comparable) aux[j], (Comparable) aux[i])) {
+            } else if (less(aux[j], aux[i])) {
                 a[k] = aux[j++];
             } else {
                 a[k] = aux[i++];
@@ -51,7 +51,8 @@ public class MergeBU extends Merge {
     public static void main(String[] args) {
 //        Integer[] a = new Integer[]{3, 2};
         Integer[] a = new Integer[]{3, 7, 9, 2, 0, 19, 4};
-        sort(a);
-        show(a);
+        MergeBU<Integer> mergeBU = new MergeBU<>();
+        mergeBU.sort(a);
+        mergeBU.show(a);
     }
 }
