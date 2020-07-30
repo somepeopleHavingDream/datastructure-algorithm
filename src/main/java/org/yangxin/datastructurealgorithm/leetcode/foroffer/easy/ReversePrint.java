@@ -39,18 +39,20 @@ public class ReversePrint {
         node3.next = null;
         System.out.println(Arrays.toString(reversePrint(node1)));
     }
-}
 
-/**
- * @author yangxin
- * 2020/07/24 10:13
- */
-class ListNode {
+    /**
+     * @author yangxin
+     * 2020/07/24 10:13
+     */
+    private static class ListNode {
 
-    int val;
-    ListNode next;
+        int val;
+        ListNode next;
 
-    ListNode(int x) {
-        val = x;
+        ListNode(int x) {
+            val = x;
+        }
     }
 }
+
+
