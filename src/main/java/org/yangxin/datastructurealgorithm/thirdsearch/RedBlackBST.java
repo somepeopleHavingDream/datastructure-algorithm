@@ -14,6 +14,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
+    private Node root;
+
     /**
      * @author yangxin
      * 2020/07/24 11:54
@@ -87,7 +89,49 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    void flipColors(Node h) {
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
+    }
+
     private int size(Node x) {
         return x == null ? 0 : x.N;
+    }
+
+    public void put(Key key, Value val) {
+        // 查找key，找到则更新其值，否则为它新建一个结点
+        root = put(root, key, val);
+        root.color = BLACK;
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private Node put(Node h, Key key, Value value) {
+        // 标准的插入操作，和父结点用红链接相连
+        if (h == null) {
+            return new Node(key, value, 1, RED);
+        }
+
+        int cmp = key.compareTo(h.key);
+        if (cmp < 0) {
+            h.left = put(h.left, key, value);
+        } else if (cmp > 0) {
+            h.right = put(h.right, key, value);
+        } else {
+            h.value = value;
+        }
+
+        if (isRed(h.right) && !isRed(h.left)) {
+            h = rotateLeft(h);
+        }
+        if (isRed(h.left) && isRed(h.left.left)) {
+            h = rotateRight(h);
+        }
+        if (isRed(h.left) && isRed(h.right)) {
+            flipColors(h);
+        }
+
+        h.N = size(h.left) + size(h.right) + 1;
+        return h;
     }
 }
