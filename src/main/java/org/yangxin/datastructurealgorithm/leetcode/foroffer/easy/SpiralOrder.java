@@ -1,8 +1,6 @@
 package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 顺时针打印矩阵
@@ -12,6 +10,13 @@ import java.util.List;
  */
 public class SpiralOrder {
 
+    /**
+     * 每次读一行，如果该行有非-1值，则输出该行非-1值，然后左旋90度;
+     * 如果该行全为-1值，则继续读取下一行，碰到非-1值同上处理，直至读完全部矩阵行
+     *
+     * @param matrix 矩阵
+     * @return 矩阵内元素按从外到里排序输出的数组
+     */
     public static int[] spiralOrder(int[][] matrix) {
         int length = matrix[0].length;
         int width = matrix.length;
@@ -28,25 +33,37 @@ public class SpiralOrder {
             }
         }
 
+        int count = 0;
         int[] result = new int[length * width];
         for (int i = 0; i < copy.length; i++) {
             for (int j = 0; j < copy[i].length; j++) {
                 if (copy[i][j] != -1) {
-                    result[i] = copy[i][j];
+                    result[count++] = copy[0][j];
                     copy[i][j] = -1;
                 }
             }
-            leftRotate(copy);
+//            result[count++] = copy[0][i];
+            leftRotate(copy, i);
         }
 
         return result;
     }
 
-    private static void leftRotate(int[][] copy) {
+    private static void leftRotate(int[][] copy, int n) {
         int size = copy.length;
-        for (int i = 0; i < copy.length; i++) {
-            for (int j = 0; j < copy[i].length; j++) {
-                copy[size - j - 1][i] = copy[i][j];
+
+        int[][] tmp = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(copy[i], 0, tmp[i], 0, size);
+        }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (n + j + 1 < size) {
+                    copy[i][j] = tmp[n + j + 1][size - i - 1];
+                } else {
+                    copy[i][j] = -1;
+                }
             }
         }
     }
