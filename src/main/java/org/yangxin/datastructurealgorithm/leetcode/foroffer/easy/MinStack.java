@@ -35,7 +35,10 @@ public class MinStack {
         Iterator<Integer> iterator = stack.iterator();
         int min = top();
         while (iterator.hasNext()) {
-            min = iterator.next() < min ? iterator.next() : min;
+            Integer next = iterator.next();
+            if (next < min) {
+                min = next;
+            }
         }
 
         return min;
