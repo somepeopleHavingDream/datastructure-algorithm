@@ -1,8 +1,7 @@
 package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 从上到下打印二叉树
@@ -14,41 +13,46 @@ import java.util.List;
 public class LevelOrder {
 
     public static List<List<Integer>> levelOrder(TreeNode root) {
-        // 判空
+        // 如果根节点为null，则直接返回空集
         if (root == null) {
             return Collections.emptyList();
         }
 
+        // 层序遍历，用队列
+        Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> resultList = new ArrayList<>();
-        levelOrder(root, resultList);
+        queue.add(root);
+        collectAndEnqueue(queue, resultList);
 
         return resultList;
     }
 
-    private static List<Integer> levelOrder(TreeNode root, List<List<Integer>> resultList) {
-        // 判空
-        if (root == null) {
-            return Collections.emptyList();
+    /**
+     * 将当前队列中的元素出队，并将当前节点的孩子节点出队
+     */
+    private static void collectAndEnqueue(Queue<TreeNode> queue, List<List<Integer>> resultList) {
+        // 如果队列中有元素，则出队并收集到集合中返回
+        List<TreeNode> currentNodeList = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            TreeNode poll = queue.poll();
+            currentNodeList.add(poll);
         }
 
-        // 先将自身节点包装成临时集合，再放入到结果集合中
-        List<Integer> selfList = new ArrayList<>();
-        selfList.add(root.val);
-        resultList.add(selfList);
+        resultList.add(currentNodeList.stream().map(treeNode -> treeNode.val).collect(Collectors.toList()));
 
-        // 处理孩子节点
-        List<Integer> leftList = levelOrder(root.left, resultList);
-        List<Integer> rightList = levelOrder(root.right, resultList);
-        if (leftList.size() != 0 && rightList.size() != 0) {
-            leftList.addAll(rightList);
-            resultList.add(leftList);
-        } else if (leftList.size() == 0) {
-            resultList.add(rightList);
-        } else {
-            resultList.add(leftList);
+        // 再将下一层级的元素入队
+        for (TreeNode treeNode : currentNodeList) {
+            if (treeNode.left != null) {
+                queue.add(treeNode.left);
+            }
+            if (treeNode.right != null) {
+                queue.add(treeNode.right);
+            }
         }
 
-        return selfList;
+        if (!queue.isEmpty()) {
+            collectAndEnqueue(queue, resultList);
+        }
     }
 
     public static void main(String[] args) {
@@ -69,7 +73,7 @@ public class LevelOrder {
         node1.left = node2;
         node1.right = node3;
         node2.left = node4;
-        node4.right = node5;
+        node3.right = node5;
 
         System.out.println(levelOrder(node1));
     }
