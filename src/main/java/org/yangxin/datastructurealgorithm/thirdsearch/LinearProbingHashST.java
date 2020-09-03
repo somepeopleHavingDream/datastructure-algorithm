@@ -1,5 +1,7 @@
 package org.yangxin.datastructurealgorithm.thirdsearch;
 
+import java.util.Objects;
+
 /**
  * 基于线性探测的散列表
  *
@@ -34,8 +36,11 @@ public class LinearProbingHashST<Key, Value> {
         values = (Value[]) new Object[M];
     }
 
+    @SuppressWarnings("unchecked")
     public LinearProbingHashST(int cap) {
-        // todo
+        M = cap;
+        keys = (Key[]) new Object[M];
+        values = (Value[]) new Object[M];
     }
 
     private int hash(Key key) {
@@ -59,6 +64,30 @@ public class LinearProbingHashST<Key, Value> {
     }
 
     private void put(Key key, Value value) {
+        // 将M加倍
+        if (N >= M / 2) {
+            resize(2 * M);
+        }
 
+        int i;
+        for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (Objects.equals(keys[i], key)) {
+                values[i] = value;
+                return;
+            }
+        }
+
+        keys[i] = key;
+        values[i] = value;
+        N++;
+    }
+
+    public Value get(Key key) {
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (Objects.equals(keys[i], key)) {
+                return values[i];
+            }
+        }
+        return null;
     }
 }
