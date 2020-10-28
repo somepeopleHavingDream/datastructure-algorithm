@@ -7,13 +7,12 @@ package org.yangxin.datastructurealgorithm.secondsort;
  * 2020/06/15 16:50
  */
 public class Example<T extends Comparable<T>> {
-//public class Example {
 
     public void sort(T[] a) {
 
     }
 
-    boolean less(T v, T w) {
+    protected boolean less(T v, T w) {
         return v.compareTo(w) < 0;
     }
 

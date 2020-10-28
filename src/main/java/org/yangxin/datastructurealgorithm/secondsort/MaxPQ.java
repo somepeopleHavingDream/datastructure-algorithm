@@ -18,6 +18,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
      */
     private Integer N = 0;
 
+    @SuppressWarnings("unchecked")
     public MaxPQ(int maxN) {
         pq = (Key[]) new Comparable[maxN + 1];
     }
@@ -31,6 +32,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
     }
 
     public void insert(Key v) {
+        // 这里可能有数组越界问题，下标值未判定
         pq[++N] = v;
         swim(N);
     }
@@ -71,6 +73,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
     /**
      * 由上至下的堆有序化（下沉）的实现
      */
+    @SuppressWarnings("SameParameterValue")
     private void sink(int k) {
         while (2 * k <= N) {
             int j = 2 * k;
