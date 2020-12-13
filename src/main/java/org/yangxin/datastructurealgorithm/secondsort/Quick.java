@@ -58,6 +58,7 @@ public class Quick<T extends Comparable<T>> extends Example<T> {
         }
         // 将v=a[j]放入正确的位置
         exch(a, lo, j);
+        show(a);
         // a[lo..j-1] <= a[j] <= a[j+1..hi]达成
         return j;
     }
