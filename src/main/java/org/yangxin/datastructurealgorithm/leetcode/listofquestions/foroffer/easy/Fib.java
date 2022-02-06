@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 /**
  * 斐波那契数列

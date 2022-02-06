@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 import java.util.Deque;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 /**
  * 二维数组中的查找
@@ -6,9 +6,9 @@ package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
  * @author yangxin
  * 2020/07/24 10:01
  */
-public class FindNumberIn2DArray {
+public class FindNumberIn2dArray {
 
-    public static boolean findNumberIn2DArray(int[][] matrix, int target) {
+    public static boolean findNumberIn2dArray(int[][] matrix, int target) {
         for (int[] ints : matrix) {
             for (int anInt : ints) {
                 if (target == anInt) {
@@ -25,7 +25,7 @@ public class FindNumberIn2DArray {
                 {3, 6, 9, 16, 22},
                 {10, 13, 14, 17, 24},
                 {18, 21, 23, 26, 30}};
-        System.out.println(findNumberIn2DArray(matrix, 5));
-        System.out.println(findNumberIn2DArray(matrix, 20));
+        System.out.println(findNumberIn2dArray(matrix, 5));
+        System.out.println(findNumberIn2dArray(matrix, 20));
     }
 }

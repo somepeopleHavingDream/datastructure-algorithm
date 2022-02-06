@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class GetLeastNumbers {
 
         // 取前k个数
         int[] result = new int[k];
-        if (k >= 0) System.arraycopy(arr, 0, result, 0, k);
+        System.arraycopy(arr, 0, result, 0, k);
 
         return result;
     }

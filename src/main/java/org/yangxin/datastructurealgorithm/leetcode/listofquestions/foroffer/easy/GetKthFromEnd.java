@@ -1,24 +1,29 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 /**
- * 反转链表
+ * 链表中倒数第k个节点
  *
  * @author yangxin
- * 2020/08/05 17:50
+ * 2020/08/05 17:43
  */
-public class ReverseList {
+public class GetKthFromEnd {
 
-    public static ListNode reverseList(ListNode head) {
-        ListNode suc = head, pre = null;
-        while (suc != null) {
-            ListNode tmp = suc;
-            suc = suc.next;
-
-            tmp.next = pre;
-            pre = tmp;
+    public static ListNode getKthFromEnd(ListNode head, int k) {
+        // 计算出链表有多长
+        int length = 0;
+        ListNode p = head;
+        while (p != null) {
+            length++;
+            p = p.next;
         }
 
-        return pre;
+        int step = length - k;
+        p = head;
+        for (int i = 0; i < step; i++) {
+            p = p.next;
+        }
+
+        return p;
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -33,7 +38,7 @@ public class ReverseList {
         node3.next = node4;
         node4.next = node5;
 
-        ListNode from = reverseList(node1);
+        ListNode from = getKthFromEnd(node1, 2);
         while (from != null) {
             System.out.println(from.val);
             from = from.next;
@@ -42,7 +47,7 @@ public class ReverseList {
 
     /**
      * @author yangxin
-     * 2020/08/05 17:50
+     * 2020/08/05 17:43
      */
     private static class ListNode {
 

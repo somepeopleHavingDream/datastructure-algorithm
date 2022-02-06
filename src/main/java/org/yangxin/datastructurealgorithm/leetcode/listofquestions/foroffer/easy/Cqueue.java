@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.leetcode.foroffer.easy;
+package org.yangxin.datastructurealgorithm.leetcode.listofquestions.foroffer.easy;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @author yangxin
  * 2020/07/24 10:22
  */
-public class CQueue {
+public class Cqueue {
 
     /**
      * 用以入元素
@@ -21,7 +21,7 @@ public class CQueue {
      */
     private final Deque<Integer> stack2;
 
-    public CQueue() {
+    public Cqueue() {
         stack1 = new LinkedList<>();
         stack2 = new LinkedList<>();
     }
@@ -43,7 +43,7 @@ public class CQueue {
     }
 
     public static void main(String[] args) {
-        CQueue cQueue = new CQueue();
+        Cqueue cQueue = new Cqueue();
         cQueue.appendTail(4);
         cQueue.appendTail(3);
         cQueue.appendTail(2);
