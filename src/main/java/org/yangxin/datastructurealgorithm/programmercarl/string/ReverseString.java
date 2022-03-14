@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.programmercarl.hashtable;
+package org.yangxin.datastructurealgorithm.programmercarl.string;
 
 /**
  * @author yangxin
