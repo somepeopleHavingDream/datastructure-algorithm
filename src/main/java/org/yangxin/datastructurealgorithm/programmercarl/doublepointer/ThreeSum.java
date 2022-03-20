@@ -33,8 +33,8 @@ public class ThreeSum {
                 return result;
             }
 
-            while (i > 0 && i < length && nums[i] == nums[i - 1]) {
-                i++;
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
             }
 
             // 定义左指针、右指针
@@ -42,7 +42,13 @@ public class ThreeSum {
             while (left < right) {
                 // 如果nums[i]+nums[left]+nums[right]=0
                 int sum = nums[i] + nums[left] + nums[right];
-                if (sum == 0) {
+                if (sum > 0) {
+                    // 如果nums[i]+nums[left]+nums[right] < 0，则移动右指针
+                    right--;
+                } else if (sum < 0) {
+                    // 如果nums[i]+nums[left]+nums[right] < 0，则移动左指针
+                    left++;
+                } else {
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
 
                     // 更新左右指针
@@ -54,18 +60,6 @@ public class ThreeSum {
                     }
                     left++;
                     right--;
-                } else if (sum < 0) {
-                    // 如果nums[i]+nums[left]+nums[right] < 0，则移动左指针
-                    left++;
-                    while (left < right && nums[left] == nums[left - 1]) {
-                        left++;
-                    }
-                } else {
-                    // 如果nums[i]+nums[left]+nums[right] < 0，则移动右指针
-                    right--;
-                    while (left < right && nums[right] == nums[right  + 1]) {
-                        right--;
-                    }
                 }
             }
         }
