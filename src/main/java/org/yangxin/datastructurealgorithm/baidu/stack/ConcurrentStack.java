@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.stack;
+package org.yangxin.datastructurealgorithm.baidu.stack;
 
 import java.util.concurrent.atomic.AtomicReference;
 

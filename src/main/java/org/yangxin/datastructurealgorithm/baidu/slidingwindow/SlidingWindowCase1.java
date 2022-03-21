@@ -1,4 +1,4 @@
-package org.yangxin.datastructurealgorithm.slidingwindow;
+package org.yangxin.datastructurealgorithm.baidu.slidingwindow;
 
 /**
  * 滑动窗口法的大体框架
