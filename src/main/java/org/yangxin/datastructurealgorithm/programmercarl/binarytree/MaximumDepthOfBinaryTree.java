@@ -7,25 +7,26 @@ import java.util.Queue;
  * @author yangxin
  * 2022/3/24 22:13
  */
-@SuppressWarnings({"DuplicatedCode", "UnnecessaryLocalVariable"})
+@SuppressWarnings({"DuplicatedCode", "AlibabaRemoveCommentedCode"})
 public class MaximumDepthOfBinaryTree {
 
     public static void main(String[] args) {
-//        TreeNode node1 = new TreeNode(3);
-//        TreeNode node2 = new TreeNode(9);
-//        TreeNode node3 = new TreeNode(20);
-//        TreeNode node4 = new TreeNode(15);
-//        TreeNode node5 = new TreeNode(7);
-//        node1.left = node2;
-//        node1.right = node3;
-//        node3.left = node4;
-//        node3.right = node5;
+        TreeNode node1 = new TreeNode(3);
+        TreeNode node2 = new TreeNode(9);
+        TreeNode node3 = new TreeNode(20);
+        TreeNode node4 = new TreeNode(15);
+        TreeNode node5 = new TreeNode(7);
+        node1.left = node2;
+        node1.right = node3;
+        node3.left = node4;
+        node3.right = node5;
 
-        TreeNode node1 = new TreeNode(1);
-        TreeNode node2 = new TreeNode(2);
-        node1.right = node2;
+//        TreeNode node1 = new TreeNode(1);
+//        TreeNode node2 = new TreeNode(2);
+//        node1.right = node2;
 
-        System.out.println(maxDepth(node1));
+//        System.out.println(maxDepthByLevelOrder(node1));
+        System.out.println(maxDepthByRecursion(node1));
     }
 
     private static class TreeNode {
@@ -44,7 +45,7 @@ public class MaximumDepthOfBinaryTree {
         }
     }
 
-    private static int maxDepth(TreeNode root) {
+    private static int maxDepthByLevelOrder(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -76,5 +77,15 @@ public class MaximumDepthOfBinaryTree {
         }
 
         return depth;
+    }
+
+    private static int maxDepthByRecursion(TreeNode root) {
+        // 确定终止条件
+        if (root == null) {
+            return 0;
+        }
+
+        // 编写单层逻辑
+        return Math.max(maxDepthByRecursion(root.left), maxDepthByRecursion(root.right)) + 1;
     }
 }
