@@ -41,7 +41,7 @@ public class MinimumDepthOfBinaryTree {
 //        node2.left = node4;
 //        node2.right = node5;
 
-        System.out.println(minDepth(node1));
+        System.out.println(minDepthByLevelOrder(node1));
     }
 
     private static class TreeNode {
@@ -60,7 +60,7 @@ public class MinimumDepthOfBinaryTree {
         }
     }
 
-    private static int minDepth(TreeNode root) {
+    private static int minDepthByLevelOrder(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -96,5 +96,25 @@ public class MinimumDepthOfBinaryTree {
         }
 
         return depth;
+    }
+
+    private static int minDepthByRecursion(TreeNode root) {
+        // 编写终止条件
+        if (root == null) {
+            return 0;
+        }
+
+        // 编写单层逻辑
+        int leftDepth = minDepthByRecursion(root.left);
+        int rightDepth = minDepthByRecursion(root.right);
+        if (root.left == null && root.right == null) {
+            return 1;
+        } else if (root.left == null) {
+            return rightDepth + 1;
+        } else if (root.right == null) {
+            return leftDepth + 1;
+        } else {
+            return Math.min(leftDepth, rightDepth) + 1;
+        }
     }
 }
