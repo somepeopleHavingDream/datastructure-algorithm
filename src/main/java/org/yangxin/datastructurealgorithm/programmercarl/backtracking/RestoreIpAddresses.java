@@ -21,15 +21,15 @@ public class RestoreIpAddresses {
     private static List<String> restoreIpAddresses(String s) {
         RESULT.clear();
 
-        backtracking(s, 0, 0);
+        backtracking(new StringBuilder(s), 0, 0);
         return RESULT;
     }
 
-    private static void backtracking(String s, int start, int pointNum) {
+    private static void backtracking(StringBuilder s, int start, int pointNum) {
         // 终止条件
         if (pointNum == 3) {
-            if (isValid(s, start, s.length() - 1)) {
-                RESULT.add(s);
+            if (isValid(s.toString(), start, s.length() - 1)) {
+                RESULT.add(s.toString());
             }
             return;
         }
@@ -37,14 +37,15 @@ public class RestoreIpAddresses {
         // 单层for循环
         for (int i = start; i < s.length(); i++) {
             // 处理结点
-            if (!isValid(s, start, i)) {
+            if (!isValid(s.toString(), start, i)) {
                 break;
             }
-            String newStr = s.substring(0, i + 1) + "." + s.substring(i + 1);
+            s.insert(i + 1, ".");
 
             // 递归
-            backtracking(newStr, i + 2, pointNum + 1);
+            backtracking(s, i + 2, pointNum + 1);
             // 回溯
+            s.deleteCharAt(i + 1);
         }
     }
 
