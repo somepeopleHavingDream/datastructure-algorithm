@@ -37,7 +37,7 @@ public class NQueens {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = 0; i < n; i++) {
             // 处理结点
             if (cant(chessboard, row, i)) {

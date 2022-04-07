@@ -33,7 +33,7 @@ public class PalindromePartitioning {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = start; i < s.length(); i++) {
             // 处理结点
             if (isPalindrome(s, start, i)) {

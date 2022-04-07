@@ -42,7 +42,7 @@ public class CombinationSum {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = start; i < sortedCandidates.length && target - sortedCandidates[i] >= 0; i++) {
             // 处理结点
             PATH.add(sortedCandidates[i]);

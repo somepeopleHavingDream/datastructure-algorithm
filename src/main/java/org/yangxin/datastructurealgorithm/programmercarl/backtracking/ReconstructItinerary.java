@@ -65,7 +65,7 @@ public class ReconstructItinerary {
             return true;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         String from = PATH.get(PATH.size() - 1);
         Map<String, Integer> toMap = MAP.get(from);
         if (toMap == null) {
