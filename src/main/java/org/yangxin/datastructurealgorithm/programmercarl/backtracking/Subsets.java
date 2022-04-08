@@ -35,7 +35,7 @@ public class Subsets {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = start; i < nums.length; i++) {
             // 处理结点
             PATH.add(nums[i]);

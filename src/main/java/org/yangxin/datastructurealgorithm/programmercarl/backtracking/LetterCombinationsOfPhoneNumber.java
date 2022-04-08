@@ -50,7 +50,7 @@ public class LetterCombinationsOfPhoneNumber {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         String s = MAP[digits.charAt(index) - '0'];
         for (int i = 0; i < s.length(); i++) {
             // 处理结点

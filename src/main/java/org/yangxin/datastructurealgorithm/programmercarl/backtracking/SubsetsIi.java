@@ -38,7 +38,7 @@ public class SubsetsIi {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = start; i < nums.length; i++) {
             // 处理结点
             if (i > start && nums[i] == nums[i - 1]) {

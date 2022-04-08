@@ -38,7 +38,7 @@ public class IncreasingSubsequences {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         int[] used = new int[201];
         for (int i = start; i < nums.length; i++) {
             // 处理结点

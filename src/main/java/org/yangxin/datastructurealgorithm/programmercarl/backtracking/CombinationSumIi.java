@@ -41,7 +41,7 @@ public class CombinationSumIi {
             return;
         }
 
-        // 单层for循环逻辑
+        // 单层循环逻辑
         for (int i = start; i < sortedCandidates.length && target - sortedCandidates[i] >= 0; i++) {
             // 处理结点
             if (i > start && sortedCandidates[i] == sortedCandidates[i - 1]) {
