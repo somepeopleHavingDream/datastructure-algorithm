@@ -10,6 +10,7 @@ public class KnapsackProblem {
     public static void main(String[] args) {
         int[] weight = {1, 3, 4}, value = {15, 20, 30};
         System.out.println(one(weight, value, 4));
+        System.out.println(two(weight, value, 4));
     }
 
     private static int one(int[] weight, int[] value, int bagSize) {
@@ -29,5 +30,22 @@ public class KnapsackProblem {
         }
 
         return dp[weight.length - 1][bagSize];
+    }
+
+    private static int two(int[] weight, int[] value, int bagSize) {
+        // 编写dp表
+        int[] dp = new int[bagSize + 1];
+        // 编写递推公式 dp[j] = Math.max(dp[j - 1], dp[j - weight[i]] + value[i]
+        // 初始化
+        dp[0] = 0;
+
+        // 遍历顺序
+        for (int i = 0; i < weight.length; i++) {
+            for (int j = bagSize; j >= weight[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);
+            }
+        }
+
+        return dp[bagSize];
     }
 }
