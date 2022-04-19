@@ -7,11 +7,22 @@ package org.yangxin.datastructurealgorithm.programmercarl.dp;
 public class CoinChange2 {
 
     public static void main(String[] args) {
-        int[] coins = {1, 2, 5};
-        System.out.println(change(5, coins));
+//        int[] coins = {1, 2, 5};
+//        int[] coins = {2};
+        int[] coins = {10};
+        System.out.println(change(10, coins));
     }
 
     private static int change(int amount, int[] coins) {
-        return 0;
+        int[] dp = new int[amount + 1];
+        dp[0] = 1;
+
+        for (int coin : coins) {
+            for (int j = coin; j <= amount; j++) {
+                dp[j] += dp[j - coin];
+            }
+        }
+
+        return dp[amount];
     }
 }
