@@ -23,11 +23,7 @@ public class CoinChange {
         dp[0] = 0;
 
         for (int coin : coins) {
-            for (int j = 0; j <= amount; j++) {
-                if (coin > j) {
-                    continue;
-                }
-
+            for (int j = coin; j <= amount; j++) {
                 if (dp[j - coin] == Integer.MAX_VALUE) {
                     continue;
                 }
