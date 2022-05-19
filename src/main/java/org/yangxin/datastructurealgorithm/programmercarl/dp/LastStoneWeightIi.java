@@ -17,20 +17,18 @@ public class LastStoneWeightIi {
 
     private static int lastStoneWeightIi(int[] stones) {
         int sum = Arrays.stream(stones).sum();
-        int dp = dp(stones, sum / 2);
-        return (sum - dp) - dp;
-    }
 
-    private static int dp(int[] stones, int target) {
-        int[] dp = new int[target + 1];
-        dp[0] = 0;
+        int bagSize = sum / 2;
+        int[] dp = new int[bagSize + 1];
+
+        // dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i])
 
         for (int stone : stones) {
-            for (int j = target; j >= stone; j--) {
+            for (int j = bagSize; j >= stone; j--) {
                 dp[j] = Math.max(dp[j], dp[j - stone] + stone);
             }
         }
 
-        return dp[target];
+        return sum - dp[bagSize] - dp[bagSize];
     }
 }
