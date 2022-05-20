@@ -14,9 +14,11 @@ public class CoinChange2 {
     }
 
     private static int change(int amount, int[] coins) {
+        // dp[j]: 凑成金额为j的硬币组合数
         int[] dp = new int[amount + 1];
-        dp[0] = 1;
 
+        // dp[j] += dp[j - coins[i]]
+        dp[0] = 1;
         for (int coin : coins) {
             for (int j = coin; j <= amount; j++) {
                 dp[j] += dp[j - coin];
