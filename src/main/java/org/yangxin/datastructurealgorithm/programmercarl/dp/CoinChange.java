@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @author yangxin
  * 2022/4/19 21:52
  */
-@SuppressWarnings({"unused", "SameParameterValue"})
+@SuppressWarnings({"unused", "SameParameterValue", "CommentedOutCode"})
 public class CoinChange {
 
     public static void main(String[] args) {
