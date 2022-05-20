@@ -15,21 +15,21 @@ public class OnesAndZeroes {
 
     private static int findMaxForm(String[] strs, int m, int n) {
         int[][] dp = new int[m + 1][n + 1];
-        dp[0][0] = 0;
 
-        for (String str : strs) {
+        // dp[i][j] = Math.max(dp[i][j], dp[i - zeroNum][j - oneNum] + 1)
+        for (String s : strs) {
             int zeroNum = 0, oneNum = 0;
-            for (int j = 0; j < str.length(); j++) {
-                if (str.charAt(j) == '0') {
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == '0') {
                     zeroNum++;
                 } else {
                     oneNum++;
                 }
             }
 
-            for (int a = m; a >= zeroNum; a--) {
-                for (int b = n; b >= oneNum; b--) {
-                    dp[a][b] = Math.max(dp[a][b], dp[a - zeroNum][b - oneNum] + 1);
+            for (int i = m; i >= zeroNum; i--) {
+                for (int j = n; j >= oneNum; j--) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i - zeroNum][j - oneNum] + 1);
                 }
             }
         }
