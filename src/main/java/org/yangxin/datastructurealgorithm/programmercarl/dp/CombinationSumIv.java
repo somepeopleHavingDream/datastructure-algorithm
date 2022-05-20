@@ -14,16 +14,18 @@ public class CombinationSumIv {
     }
 
     private static int combinationSum4(int[] nums, int target) {
+        // dp[j]: 和为j的排列数
         int[] dp = new int[target + 1];
-        dp[0] = 1;
 
-        for (int i = 0; i <= target; i++) {
+        // dp[j] += dp[j - nums[i]]
+        dp[0] = 1;
+        for (int j = 0; j <= target; j++) {
             for (int num : nums) {
-                if (num > i) {
+                if (j < num) {
                     continue;
                 }
 
-                dp[i] += dp[i - num];
+                dp[j] += dp[j - num];
             }
         }
 
