@@ -32,16 +32,18 @@ public class ClimbingStairs {
     }
 
     private static int climbStairs(int n, int m) {
+        // dp[i]: 爬上第i阶楼梯，有多少种不同的方法
         int[] dp = new int[n + 1];
-        dp[0] = 1;
 
-        for (int i = 0; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
-                if (j > i) {
+        // dp[j] += dp[j - i]
+        dp[0] = 1;
+        for (int j = 0; j <= n; j++) {
+            for (int i = 1; i <= 2; i++) {
+                if (j < i) {
                     continue;
                 }
 
-                dp[i] += dp[i - j];
+                dp[j] += dp[j - i];
             }
         }
 
