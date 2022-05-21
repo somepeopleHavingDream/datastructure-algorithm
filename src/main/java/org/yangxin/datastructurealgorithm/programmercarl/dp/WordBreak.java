@@ -18,16 +18,15 @@ public class WordBreak {
     }
 
     private static boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> set = new HashSet<>(wordDict);
-
+        // dp[j]: 字符串s中，长度为j的子串，是否能被字典中的单词所填满
         boolean[] dp = new boolean[s.length() + 1];
-        dp[0] = true;
 
-        for (int i = 1; i <= s.length(); i++) {
-            for (int j = 0; j <= i; j++) {
-                String str = s.substring(j, i);
-                if (set.contains(str) && dp[j]) {
-                    dp[i] = true;
+        dp[0] = true;
+        for (int j = 1; j <= s.length(); j++) {
+            for (int i = 0; i <= j; i++) {
+                String substr = s.substring(i, j);
+                if (wordDict.contains(substr) && dp[i]) {
+                    dp[j] = true;
                     break;
                 }
             }
