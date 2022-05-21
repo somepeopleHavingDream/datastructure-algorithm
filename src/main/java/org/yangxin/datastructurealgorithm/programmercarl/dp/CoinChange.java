@@ -17,8 +17,10 @@ public class CoinChange {
     }
 
     private static int coinChange(int[] coins, int amount) {
+        // dp[j]: 凑成金额为j所需要的最小硬币数
         int[] dp = new int[amount + 1];
 
+        // dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1)
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
