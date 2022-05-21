@@ -14,14 +14,16 @@ public class PerfectSquares {
     }
 
     private static int numSquares(int n) {
+        // dp[j]: 和为j的最小平方和的个数
         int[] dp = new int[n + 1];
 
+        // dp[j] = Math.min(dp[j], dp[j - i * i] + 1)
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
         for (int i = 1; i * i <= n; i++) {
-            for (int j = i; j <= n; j++) {
-                if (j - i * i < 0) {
+            for (int j = i * i; j <= n; j++) {
+                if (dp[j - i * i] == Integer.MAX_VALUE) {
                     continue;
                 }
 
@@ -29,7 +31,6 @@ public class PerfectSquares {
             }
         }
 
-        // 按照题目的意思，一定是有正常结果的
         return dp[n];
     }
 }
