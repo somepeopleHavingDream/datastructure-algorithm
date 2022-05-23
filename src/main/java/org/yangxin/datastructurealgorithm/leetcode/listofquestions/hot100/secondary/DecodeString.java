@@ -1,6 +1,8 @@
 package org.yangxin.datastructurealgorithm.leetcode.listofquestions.hot100.secondary;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Objects;
 
 /**
  * @author yangxin
@@ -9,9 +11,9 @@ import java.util.*;
 public class DecodeString {
 
     public static void main(String[] args) {
-//        System.out.println(decodeString("3[a]2[bc]"));
-//        System.out.println(decodeString("3[a2[c]]"));
-//        System.out.println(decodeString("2[abc]3[cd]ef"));
+        System.out.println(decodeString("3[a]2[bc]"));
+        System.out.println(decodeString("3[a2[c]]"));
+        System.out.println(decodeString("2[abc]3[cd]ef"));
         System.out.println(decodeString("100[leetcode]"));
     }
 
@@ -22,6 +24,7 @@ public class DecodeString {
         Deque<Integer> stack = new ArrayDeque<>();
         Deque<StringBuilder> builderStack = new ArrayDeque<>();
 
+        builderStack.push(new StringBuilder());
         while (i < array.length) {
             char c = array[i];
 
@@ -33,18 +36,22 @@ public class DecodeString {
 
                 stack.push(Integer.parseInt(s.substring(prev, i)));
                 builderStack.push(new StringBuilder());
-            } else if (c >= 'a' && c <= 'z') {
-                builderStack.peek().append(c);
+            } else if (Character.isLetter(c)) {
+                Objects.requireNonNull(builderStack.peek()).append(c);
             } else if (c == ']') {
-                Integer popNum = stack.pop();
+                int popNum = stack.pop();
                 StringBuilder popBuilder = builderStack.pop();
 
-                builderStack.peek().append(popBuilder.toString().repeat(popNum));
+                StringBuilder tmpBuilder = new StringBuilder();
+                for (int j = 0; j < popNum; j++) {
+                    tmpBuilder.append(popBuilder);
+                }
+                Objects.requireNonNull(builderStack.peek()).append(tmpBuilder);
             }
 
             i++;
         }
 
-        return builderStack.peek().toString();
+        return Objects.requireNonNull(builderStack.peek()).toString();
     }
 }
