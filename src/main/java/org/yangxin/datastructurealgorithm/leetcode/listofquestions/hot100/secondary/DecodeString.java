@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author yangxin
  * 2022/4/28 17:38
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 public class DecodeString {
 
     public static void main(String[] args) {
