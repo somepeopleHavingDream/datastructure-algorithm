@@ -12,12 +12,14 @@ public class UniqueBinarySearchTrees {
     }
 
     private static int numTrees(int n) {
+        // dp[i]: 由1...i组成的二叉搜索树的个数
+        // dp[i] = dp[j - 1] * dp[i - j]
         int[] dp = new int[n + 1];
         dp[0] = 1;
 
         for (int i = 1; i <= n; i++) {
-            for (int j = 0; j < i; j++) {
-                dp[i] += (dp[j] * dp[i - j - 1]);
+            for (int j = 1; j <= i; j++) {
+                dp[i] += dp[j - 1] * dp[i - j];
             }
         }
 
