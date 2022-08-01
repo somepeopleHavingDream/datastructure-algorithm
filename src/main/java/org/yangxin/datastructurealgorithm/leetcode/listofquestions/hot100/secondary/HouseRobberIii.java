@@ -5,7 +5,7 @@ package org.yangxin.datastructurealgorithm.leetcode.listofquestions.hot100.secon
  * 2022/2/27 17:03
  */
 @SuppressWarnings("AlibabaClassNamingShouldBeCamel")
-public class HouseRobberIII {
+public class HouseRobberIii {
 
     public static void main(String[] args) {
 //        TreeNode node1 = new TreeNode(3);
