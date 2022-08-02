@@ -4,7 +4,7 @@ package org.yangxin.datastructurealgorithm.programmercarl.dp;
  * @author yangxin
  * 2022/4/20 16:15
  */
-@SuppressWarnings("DuplicatedCode")
+@SuppressWarnings({"DuplicatedCode", "AlibabaRemoveCommentedCode", "CommentedOutCode"})
 public class HouseRobberIii {
 
     public static void main(String[] args) {
@@ -49,22 +49,30 @@ public class HouseRobberIii {
     }
 
     private static int rob(TreeNode root) {
-        int[] dp = recursion(root);
+        /*
+           dp[0]: 偷窃当前结点所获得的最大金额
+           dp[1]: 不偷窃当前结点所获得的最大金额
+
+           dp[0] = root.val + rob(root.left)[1] + rob(root.right)[1]
+           dp[1] = Math.max(rob(root.left)[0], rob(root.left)[1]) + Math.max(rob(root.right)[0], rob(root.right)[1]);
+        */
+        int[] dp = traverse(root);
         return Math.max(dp[0], dp[1]);
     }
 
-    private static int[] recursion(TreeNode root) {
+    private static int[] traverse(TreeNode root) {
         // 终止条件
         if (root == null) {
             return new int[2];
         }
 
-        int[] leftDp = recursion(root.left);
-        int[] rightDp = recursion(root.right);
+        // 单层逻辑
+        int[] leftDp = traverse(root.left);
+        int[] rightDp = traverse(root.right);
 
         int[] dp = new int[2];
-        dp[0] = Math.max(leftDp[0], leftDp[1]) + Math.max(rightDp[0], rightDp[1]);
-        dp[1] = root.val + leftDp[0] + rightDp[0];
+        dp[0] = root.val + leftDp[1] + rightDp[1];
+        dp[1] = Math.max(leftDp[0], leftDp[1]) + Math.max(rightDp[0], rightDp[1]);
 
         return dp;
     }
