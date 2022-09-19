@@ -6,7 +6,7 @@ import java.util.Objects;
  * @author yangxin
  * 2022/4/20 16:42
  */
-@SuppressWarnings({"AlibabaRemoveCommentedCode", "DeprecatedIsStillUsed"})
+@SuppressWarnings({"AlibabaRemoveCommentedCode", "DeprecatedIsStillUsed", "CommentedOutCode"})
 public class BestTimeToBuyAndSellStock {
 
     public static void main(String[] args) {

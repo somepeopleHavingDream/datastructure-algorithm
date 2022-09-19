@@ -50,14 +50,13 @@ public class BestTimeToBuyAndSellStockIi {
         }
 
         int length = prices.length;
-        int[][] dp = new int[1][2];
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
+        int[] dp = new int[2];
+        dp[1] = -prices[0];
         for (int i = 1; i < length; i++) {
-            dp[0][0] = Math.max(dp[0][0], dp[0][1] + prices[i]);
-            dp[0][1] = Math.max(dp[0][1], dp[0][0] - prices[i]);
+            dp[0] = Math.max(dp[0], dp[1] + prices[i]);
+            dp[1] = Math.max(dp[1], dp[0] - prices[i]);
         }
 
-        return dp[0][0];
+        return dp[0];
     }
 }
