@@ -1,9 +1,12 @@
 package org.yangxin.datastructurealgorithm.programmercarl.dp;
 
+import java.util.Objects;
+
 /**
  * @author yangxin
  * 2022/4/20 16:42
  */
+@SuppressWarnings({"DeprecatedIsStillUsed", "CommentedOutCode"})
 public class BestTimeToBuyAndSellStockIi {
 
     public static void main(String[] args) {
@@ -15,39 +18,46 @@ public class BestTimeToBuyAndSellStockIi {
     }
 
     /*
-        显然，贪心算法的性能比动态规划的好，但不建议用贪心，因为贪心的思路较难想出来，而动规很容易查出来
+        显然，贪心算法的性能比动态规划的好
      */
 
     private static int maxProfitByGreedy(int[] prices) {
-        int maxProfit = 0;
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] > prices[i - 1]) {
-                maxProfit += prices[i] - prices[i - 1];
-            }
+        if (Objects.isNull(prices)) {
+            return 0;
         }
 
-        return maxProfit;
+        int result = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] <= prices[i - 1]) {
+                continue;
+            }
+
+            result += prices[i] - prices[i - 1];
+        }
+
+        return result;
     }
 
+    @Deprecated
     private static int maxProfitByDp(int[] prices) {
         // dp[i][0]: 第i天不持有股票，所能获取到的最大利润
         // dp[i][1]：第i天持有股票，所能获取到的最大利润
 
         // dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i])
         // dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i])
-        if (prices == null) {
+        if (Objects.isNull(prices)) {
             return 0;
         }
 
         int length = prices.length;
-        int[][] dp = new int[length][2];
+        int[][] dp = new int[1][2];
         dp[0][0] = 0;
         dp[0][1] = -prices[0];
         for (int i = 1; i < length; i++) {
-            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+            dp[0][0] = Math.max(dp[0][0], dp[0][1] + prices[i]);
+            dp[0][1] = Math.max(dp[0][1], dp[0][0] - prices[i]);
         }
 
-        return dp[length - 1][0];
+        return dp[0][0];
     }
 }
